@@ -28,3 +28,5 @@ C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Debug\net6.0-windows\NAudio.Was
 C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Debug\net6.0-windows\NAudio.WinForms.dll
 C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Debug\net6.0-windows\NAudio.WinMM.dll
 C:\Users\mathi\Documents\GitHub\TetrisDotNet\obj\Debug\net6.0-windows\TetrisDotNet.csproj.CopyComplete
+C:\Users\mathi\Documents\GitHub\TetrisDotNet\obj\Debug\net6.0-windows\pause_menu.g.cs
+C:\Users\mathi\Documents\GitHub\TetrisDotNet\obj\Debug\net6.0-windows\pause_menu.baml

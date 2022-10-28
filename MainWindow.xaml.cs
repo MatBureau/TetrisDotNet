@@ -18,6 +18,7 @@ using TetrisDotNet.Controller;
 using NAudio;
 using NAudio.Wave;
 using System.Reflection;
+using System.Threading;
 
 namespace TetrisDotNet
 {
@@ -55,6 +56,10 @@ namespace TetrisDotNet
         private readonly int maxDelay = 1000;
         private readonly int minDelay = 75;
         private readonly int delayDecrease = 25;
+
+        public bool gPause = false;
+
+        ManualResetEvent man = new ManualResetEvent(false);
 
         public MainWindow()
         {
@@ -103,6 +108,17 @@ namespace TetrisDotNet
             }
         }
 
+        private Task WaitForEscape()
+        {
+
+            return Task.Factory.StartNew(() =>
+            {
+                man.WaitOne();
+                man.Reset();
+            }
+             );
+        }
+
         private void DessinerBlockActuel(Block block)
         {
             foreach(Position p in block.PositionTuile())
@@ -128,14 +144,22 @@ namespace TetrisDotNet
 
             while (!gameState.GameOver)
             {
-                int delay = Math.Max(minDelay, maxDelay - (gameState.Score * delayDecrease));
-                if(delay < 350)
+                if (!gPause)
                 {
-                    delay = 350;
+                    int delay = Math.Max(minDelay, maxDelay - (gameState.Score * delayDecrease));
+                    if (delay < 350)
+                    {
+                        delay = 350;
+                    }
+                    await Task.Delay(delay);
+                    gameState.DeplacerBlockBas();
+                    Draw(gameState);
                 }
-                await Task.Delay(delay);
-                gameState.DeplacerBlockBas();
-                Draw(gameState);
+                else
+                {
+                    await WaitForEscape();
+                    gPause = false;
+                }
             }
 
             GameOverPanel.Visibility = Visibility.Visible;
@@ -173,6 +197,7 @@ namespace TetrisDotNet
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            gPause = false;
             if (gameState.GameOver)
             {
                 return;
@@ -201,6 +226,10 @@ namespace TetrisDotNet
                 case Key.D:
                     gameState.HardDropBlock();
                     break;
+                case Key.Escape:
+                    gPause = true;
+                    GameOverPanel.Visibility = Visibility.Visible;
+                    break;
                 default:
                     return;
             }
@@ -217,6 +246,13 @@ namespace TetrisDotNet
         {
             gameState = new GameStateController();
             GameOverPanel.Visibility=Visibility.Hidden;
+            await BoucleDeJeu();
+        }
+
+        private async void BTN_Continue_Click(object sender, RoutedEventArgs e)
+        {
+            GameOverPanel.Visibility = Visibility.Hidden;
+            gPause=false;
             await BoucleDeJeu();
         }
     }
