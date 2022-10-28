@@ -1,0 +1,5 @@
+C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Release\net6.0-windows\publish\TetrisDotNet.exe
+C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Release\net6.0-windows\publish\TetrisDotNet.dll
+C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Release\net6.0-windows\publish\TetrisDotNet.deps.json
+C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Release\net6.0-windows\publish\TetrisDotNet.runtimeconfig.json
+C:\Users\mathi\Documents\GitHub\TetrisDotNet\bin\Release\net6.0-windows\publish\TetrisDotNet.pdb
