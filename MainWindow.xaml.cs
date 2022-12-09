@@ -195,7 +195,7 @@ namespace TetrisDotNet
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private async void Window_KeyDown(object sender, KeyEventArgs e)
         {
             gPause = false;
             if (gameState.GameOver)
@@ -227,8 +227,21 @@ namespace TetrisDotNet
                     gameState.HardDropBlock();
                     break;
                 case Key.Escape:
-                    gPause = true;
-                    GameOverPanel.Visibility = Visibility.Visible;
+                    if (!gPause)
+                    {
+                        gPause = true;
+                        GameOverPanel.Visibility = Visibility.Visible;
+                        TBX_GameOver.Visibility = Visibility.Hidden;
+                        TBX_ScoreFinal.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        gPause = false;
+                        GameOverPanel.Visibility = Visibility.Hidden;
+                        TBX_GameOver.Visibility = Visibility.Visible;
+                        TBX_ScoreFinal.Visibility = Visibility.Visible;
+                        await BoucleDeJeu();
+                    }
                     break;
                 default:
                     return;
@@ -246,14 +259,23 @@ namespace TetrisDotNet
         {
             gameState = new GameStateController();
             GameOverPanel.Visibility=Visibility.Hidden;
+            gPause=false;
             await BoucleDeJeu();
         }
 
         private async void BTN_Continue_Click(object sender, RoutedEventArgs e)
         {
             GameOverPanel.Visibility = Visibility.Hidden;
-            gPause=false;
+            TBX_GameOver.Visibility = Visibility.Visible;
+            TBX_ScoreFinal.Visibility = Visibility.Visible;
+            gPause =false;
             await BoucleDeJeu();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

@@ -27,7 +27,6 @@
     <None Remove="Assets\TileRed.png" />
     <None Remove="Assets\TileYellow.png" />
     <None Remove="JeSuisMusic\TechnoTetris.mp3" />
-    <None Remove="Techno - Tetris %28Remix%29.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,7 +56,6 @@
     <Resource Include="Assets\TileRed.png" />
     <Resource Include="Assets\TileYellow.png" />
     <Resource Include="JeSuisMusic\TechnoTetris.mp3" />
-    <Resource Include="Techno - Tetris (Remix).mp3" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TetrisDotNet"
         mc:Ignorable="d"
         Title="Tetris" Height="600" Width="800" MinWidth="600" MinHeight="600" Foreground="White" 
-        FontFamily="Segoe UI Light" FontSize="28" KeyDown="Window_KeyDown" ResizeMode="NoResize">
+        FontFamily="Segoe UI Light" FontSize="28" KeyDown="Window_KeyDown" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
