@@ -67,11 +67,6 @@ namespace TetrisDotNet
             controlleurImage = SetupGameCanvas(gameState.Grille);
         }
 
-        private async void WebSocketConn()
-        {
-            
-        }
-
         private Image[,] SetupGameCanvas(Grille grille)
         {
             Image[,] l_controlleurImages = new Image[grille._Lignes, grille._Colonnes];
